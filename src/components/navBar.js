@@ -17,13 +17,22 @@ const NavBar = () => {
           >
             <span className='navbar-toggler-icon'></span>
           </button>
+
           <div className='collapse navbar-collapse' id='navbarText'>
             <ul className='navbar-nav mr-auto'>
-              <li className='nav-item active'>
+              <li>
+                <a className='navbar-brand' href='#'>
+                  <img
+                    src='https://www.macstation.com.ar/assets/img/logo_authorized_reseller.svg'
+                    alt=''
+                  />
+                </a>
+              </li>
+              {/* <li className='nav-item active'>
                 <a className='nav-link' href='#'>
                   <i className='bi bi-apple'></i>
                 </a>
-              </li>
+              </li> */}
               <li className='nav-item'>
                 <a className='nav-link' href='#'>
                   Macbook
