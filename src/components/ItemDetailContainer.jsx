@@ -1,18 +1,23 @@
-import React, { useEffect, useState } from "react";
-import ItemsList from "./ItemList";
-// import {data} from './data';
+import React, { useState, useEffect } from "react";
+import ItemDetail from "./ItemDetail";
 
-const ItemsListContainer = ({ greeting }) => {
-  const [datos, setDatos] = useState([]);
+const ItemDetailContainer = (props) => {
+  const [item, setItem] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     let is_ok = true;
     const data = [
       {
         id: 1,
-        name: '"MacBook Pro 16" M1 Pro 512 GB - Space Gray',
-        stock: 10,
-        cost: 500000,
+        name: 'MacBook Pro 16" M1 Pro 512 GB - Space Gray',
+        details: `Todo el poder para los pro!! La potencia de los ultrarrápidos chips
+          M1 Pro y M1 Max te permite disfrutar un rendimiento revolucionario
+          con una excepcional duración de la batería. Además, la MacBook Pro
+          trae una espectacular pantalla Liquid Retina XDR y todos los puertos
+          que necesitas. Esta es la notebook que estabas esperando.`,
+        stock: 5,
+        cost: 549999,
         urlImg: "https://www.macstation.com.ar/img/productos/2616-1.jpg",
       },
       {
@@ -66,12 +71,12 @@ const ItemsListContainer = ({ greeting }) => {
         stock: 30,
         cost: 300000,
         urlImg: "https://www.macstation.com.ar/img/productos/1829-1.jpg",
-      }
+      },
     ];
-    let mostrarDatos = (data) => {
-      return data;
+    let mostrarItem = (data) => {
+      return data[0];
     };
-    let consultaDatos = (time, task) => {
+    let getItem = (time, task) => {
       return new Promise((resolve, reject) => {
         if (is_ok) {
           setTimeout(() => {
@@ -82,16 +87,20 @@ const ItemsListContainer = ({ greeting }) => {
         }
       });
     };
-    consultaDatos(3000, mostrarDatos(data))
-      .then((respuesta) => setDatos(respuesta))
+    getItem(2000, mostrarItem(data))
+      .then((item) => {
+        setIsLoading(false);
+        setItem(item);
+      })
       .catch((err) => console.log(err));
   }, []);
 
-  return (
-    <>
-      <ItemsList datos={datos} />
-    </>
-  );
+  //verifico si el estado isLoading es true, renderizo el cargando, sino retorno el compoennte Item Details
+  if (isLoading) {
+    return <h1 className="text-center">Cargando Item Detail...</h1>;
+  } else {
+    return <ItemDetail item={item} />;
+  }
 };
 
-export default ItemsListContainer;
+export default ItemDetailContainer;

@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { Stack, Button } from "@mui/material";
 
-const itemStock = 10;
+// const itemStock = 10;
 
 const style = {
   width: "100px",
 };
 
-const ItemCount = (props) => {
+const ItemCount = ({stock}) => {
   const [itemsCount, setItemsCount] = useState(0);
+  const [itemStock, setItemsStock] = useState(0);
 
   useEffect(() => {
     console.log("useEffect");
+    setItemsStock(stock);
   });
 
   const increment = () => {
