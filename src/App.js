@@ -3,9 +3,9 @@ import "./App.css";
 import React from "react";
 import NavBar from "./components/navBar.js";
 import ItemsListContainer from "./components/ItemListContainer";
-import ItemCount from "./components/ItemCount";
 
-import ItemDetailContainer from "./components/ItemDetailContainer"
+import ItemDetailContainer from "./components/ItemDetailContainer";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 // const style = {
 //   paddingRight: "10px",
 // };
@@ -13,13 +13,14 @@ import ItemDetailContainer from "./components/ItemDetailContainer"
 function App() {
   return (
     // <React.Fragment>
-    <>
+    <BrowserRouter>
       <NavBar />
-      <ItemDetailContainer />
-      <ItemsListContainer greeting='Hola! Aquí veremos la lista de items' />
-    {/* <ItemCount /> */}
-    
-    </>
+      <Routes>
+        <Route path='/' element={<ItemsListContainer />} />
+        <Route path='/item/:id' element={<ItemDetailContainer />} />
+        <Route path='/category/:idCategory' element={<ItemsListContainer />} />
+      </Routes>
+    </BrowserRouter>
 
     // </React.Fragment>
   );

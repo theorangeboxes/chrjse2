@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
@@ -14,7 +14,6 @@ const ItemDetail = ({ item }) => {
             <h2>{`$ ${item.cost}`}</h2>
             <p>{item.details}</p>
             <h4>Stock: {item.stock}</h4>
-
             <div className='mt-auto p-2'>
               <ItemCount stock={item.stock} />
             </div>

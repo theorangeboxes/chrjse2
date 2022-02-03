@@ -7,21 +7,21 @@ const style = {
   width: "100px",
 };
 
-const ItemCount = ({stock}) => {
-  const [itemsCount, setItemsCount] = useState(0);
-  const [itemStock, setItemsStock] = useState(0);
+const ItemCount = ({ stock }) => {
+  const [itemsCount, setItemsCount] = useState(1);
+  const [itemStock, setItemStock] = useState(0);
 
   useEffect(() => {
-    console.log("useEffect");
-    setItemsStock(stock);
-  });
+    console.log(stock);
+    setItemStock(stock);
+  }, [stock]);
 
   const increment = () => {
     if (itemsCount < itemStock) setItemsCount(itemsCount + 1);
   };
 
   const decrement = () => {
-    if (itemsCount > 0) setItemsCount(itemsCount - 1);
+    if (itemsCount > 1) setItemsCount(itemsCount - 1);
   };
 
   return (

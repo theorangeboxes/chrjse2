@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import CartWidget from "./cartWidget";
 
 const NavBar = () => {
@@ -21,12 +22,14 @@ const NavBar = () => {
           <div className='collapse navbar-collapse' id='navbarText'>
             <ul className='navbar-nav mr-auto'>
               <li>
-                <a className='navbar-brand' href='#'>
-                  <img
-                    src='https://www.macstation.com.ar/assets/img/logo_authorized_reseller.svg'
-                    alt=''
-                  />
-                </a>
+                <Link to='./'>
+                  <div className='navbar-brand'>
+                    <img
+                      src='https://www.macstation.com.ar/assets/img/logo_authorized_reseller.svg'
+                      alt=''
+                    />
+                  </div>
+                </Link>
               </li>
               {/* <li className='nav-item active'>
                 <a className='nav-link' href='#'>
@@ -34,19 +37,19 @@ const NavBar = () => {
                 </a>
               </li> */}
               <li className='nav-item'>
-                <a className='nav-link' href='#'>
+                <Link to='/category/1' className='nav-link'>
                   Macbook
-                </a>
+                </Link>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='#'>
+                <Link to='/category/2' className='nav-link'>
                   Ipad
-                </a>
+                </Link>
               </li>
               <li className='nav-item'>
-                <a className='nav-link' href='#'>
-                  AppleWatch
-                </a>
+                <Link to='/category/3' className='nav-link'>
+                  Apple Watch
+                </Link>
               </li>
             </ul>
           </div>
