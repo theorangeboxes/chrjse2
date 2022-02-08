@@ -7,12 +7,11 @@ const style = {
   width: "100px",
 };
 
-const ItemCount = ({ stock }) => {
+const ItemCount = ({ stock, onAdd }) => {
   const [itemsCount, setItemsCount] = useState(1);
   const [itemStock, setItemStock] = useState(0);
 
   useEffect(() => {
-    console.log(stock);
     setItemStock(stock);
   }, [stock]);
 
@@ -22,6 +21,11 @@ const ItemCount = ({ stock }) => {
 
   const decrement = () => {
     if (itemsCount > 1) setItemsCount(itemsCount - 1);
+  };
+
+  const handleClick = (e) => {
+    e.stopPropagation();
+    onAdd(itemsCount);
   };
 
   return (
@@ -42,6 +46,7 @@ const ItemCount = ({ stock }) => {
       </div>
       <div className='d-flex justify-content-center mt-1'>
         <Button
+          onClick={handleClick}
           className='text-center'
           style={{ margin: "3px 3px 3px 3px" }}
           variant='outlined'
