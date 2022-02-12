@@ -1,30 +1,17 @@
-// import logo from "./logo.svg";
 import "./App.css";
 import React from "react";
-import NavBar from "./components/navBar.js";
-import ItemsListContainer from "./components/ItemListContainer";
-import Cart from "./components/Cart";
-
-import ItemDetailContainer from "./components/ItemDetailContainer";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-// const style = {
-//   paddingRight: "10px",
-// };
+import Home from "./pages/Home";
+// import CartContextProvider, { CartContext } from "./context/CartContext";
+import CartContextProvider from "./context/CartContext";
 
 function App() {
   return (
-    // <React.Fragment>
-    <BrowserRouter>
-      <NavBar />
-      <Routes>
-        <Route path='/' element={<ItemsListContainer />} />
-        <Route path='/item/:id' element={<ItemDetailContainer />} />
-        <Route path='/category/:idCategory' element={<ItemsListContainer />} />
-        <Route path='/cart' element={<Cart />} />
-      </Routes>
-    </BrowserRouter>
-
-    // </React.Fragment>
+    <CartContextProvider>
+      <Home />
+    </CartContextProvider>
+    // <CartContext.Provider value={[1, 2, 3]}>
+    // <Home />
+    // </CartContext.Provider>
   );
 }
 

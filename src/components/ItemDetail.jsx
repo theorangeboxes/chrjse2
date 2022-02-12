@@ -1,12 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
+import { CartContext } from "../context/CartContext";
 import ItemCount from "./ItemCount";
 
 const ItemDetail = ({ item }) => {
+  const test = useContext(CartContext);
   const [quantityToAdd, setQuantityToAdd] = useState(0);
 
   const onAdd = (_quantityToAdd) => {
     setQuantityToAdd(_quantityToAdd);
+    test.addToCart(item,_quantityToAdd);
   };
 
   useEffect(() => {
@@ -43,6 +46,7 @@ const ItemDetail = ({ item }) => {
             <Link to='/Cart' className='btn btn-primary'>
                   FINALIZAR
             </Link>
+            {/* <h1>{test[1]}</h1> */}
           </div>
         </div>
       </div>
