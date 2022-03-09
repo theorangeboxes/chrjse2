@@ -4,6 +4,7 @@ import { createContext } from "react";
 export const CartContext = createContext();
 
 const CartContextProvider = ({ children }) => {
+  
   const [cartList, setCartList] = useState([
     {
       id: 1,
@@ -55,6 +56,22 @@ const CartContextProvider = ({ children }) => {
       : setCartList([...cartList, { ...item, qtyInCart: _quantityToAdd }]);
   };
 
+  const cartTotalPrice = () => {
+      let total = 0;
+    cartList.forEach(e => {
+        total += (e.qtyInCart * e.cost);
+    })
+    return total;
+  }
+
+  const cartCountItems = () => {
+    let total = 0;
+    cartList.forEach(e => {
+        total += e.qtyInCart ;
+    })
+    return total;
+  }
+
   const removeItems = () => {
     setCartList([]);
   };
@@ -66,7 +83,7 @@ const CartContextProvider = ({ children }) => {
 
   return (
     <CartContext.Provider
-      value={{ cartList, removeItems, removeItem, addToCart }}
+      value={{ cartList, removeItems, removeItem, addToCart, cartTotalPrice,cartCountItems }}
     >
       {children}
     </CartContext.Provider>
