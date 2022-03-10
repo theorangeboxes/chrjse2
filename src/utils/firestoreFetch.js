@@ -1,5 +1,5 @@
 import { db } from "../utils/firebaseConfig";
-import { collection, getDocs, doc, getDoc } from "firebase/firestore";
+import { collection, getDocs, doc, setDoc } from "firebase/firestore";
 
 const firestoreFetch = async () => {
   const querySnapshot = await getDocs(collection(db, "products"));
@@ -10,7 +10,7 @@ const firestoreFetch = async () => {
   }));
   console.log(categoryFromFirestore);
   const dataFromFirebase = querySnapshot.docs.map((item) => ({
-    id: item.id,
+    idFS: item.id,
     ...item.data(),
     category: categoryFromFirestore.filter(
       (i) => i.idFS === item.data().category.id
@@ -18,6 +18,12 @@ const firestoreFetch = async () => {
   }));
 
   return dataFromFirebase;
+};
+
+export const createOrderFirestore = async (order) => {
+  const newOrderRef = doc(collection(db, "orders"));
+  await setDoc(newOrderRef, order);
+  return newOrderRef;
 };
 
 export default firestoreFetch;
