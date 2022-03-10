@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
-// import {data} from './data';
 import { data } from "../utils/products";
 import { useParams } from "react-router-dom";
+
+import firestoreFetch from "../utils/firestoreFetch";
 
 const ItemsListContainer = (props) => {
   const [datos, setDatos] = useState([]);
@@ -13,26 +14,17 @@ const ItemsListContainer = (props) => {
   useEffect(() => {
     let is_ok = true;
     setIsLoading(true);
+
     let mostrarDatos = (data) => {
-      // return data.filter(i => i.category.id === idCategory);
       if (!idCategory) return data;
       else return data.filter((i) => i.category.id === parseInt(idCategory));
     };
-    let consultaDatos = (time, task) => {
-      return new Promise((resolve, reject) => {
-        if (is_ok) {
-          setTimeout(() => {
-            resolve(task);
-          }, time);
-        } else {
-          reject("Error");
-        }
-      });
-    };
-    consultaDatos(3000, mostrarDatos(data))
+
+    firestoreFetch()
       .then((respuesta) => {
         setIsLoading(false);
-        setDatos(respuesta);
+        setDatos(mostrarDatos(respuesta));
+        respuesta.forEach((i) => console.log(i));
       })
       .catch((err) => console.log(err));
   }, [idCategory]);

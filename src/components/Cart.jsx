@@ -19,10 +19,10 @@ const Cart = () => {
               <>
                 <h1>__________</h1>
                 <h1>{item.name}</h1>
-                {/* <h2>{item.details}</h2> */}
+                
                 <h3>{`Cantidad: ${item.qtyInCart} / $${item.cost} c/u`}</h3>
                 <h4>{`$ ${item.qtyInCart * item.cost}`}</h4>
-                <ItemCount stock={item.qtyInCart} onAdd={onAdd} />
+                {/* <ItemCount stock={item.qtyInCart} onAdd={onAdd} /> */}
                 <button
                   className='btn btn-primary'
                   onClick={() => test.removeItem(item.id)}
@@ -34,9 +34,7 @@ const Cart = () => {
             );
           })}
 
-          {/* <h2>{test.cartList[0]}</h2>
-
-      <h2>{test.cartList[1]}</h2> */}
+        
           <h1>________</h1>
           <button className='btn btn-primary' onClick={test.removeItems}>
             {" "}

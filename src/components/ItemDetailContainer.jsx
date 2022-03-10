@@ -3,6 +3,8 @@ import ItemDetail from "./ItemDetail";
 import { data } from "../utils/products";
 import { useParams, Navigate } from "react-router-dom";
 
+import firestoreFetch from "../utils/firestoreFetch";
+
 const ItemDetailContainer = (props) => {
   const [item, setItem] = useState({});
   const [isLoading, setIsLoading] = useState(true);
@@ -14,21 +16,11 @@ const ItemDetailContainer = (props) => {
     let mostrarItem = (data) => {
       return data.find((i) => i.id === parseInt(urlParams.id));
     };
-    let getItem = (time, task) => {
-      return new Promise((resolve, reject) => {
-        if (is_ok) {
-          setTimeout(() => {
-            resolve(task);
-          }, time);
-        } else {
-          reject("Error");
-        }
-      });
-    };
-    getItem(2000, mostrarItem(data))
-      .then((item) => {
+    firestoreFetch()
+      .then((respuesta) => {
         setIsLoading(false);
-        setItem(item);
+        setItem(mostrarItem(respuesta));
+        respuesta.forEach((i) => console.log(i));
       })
       .catch((err) => console.log(err));
   }, [urlParams.id]);
