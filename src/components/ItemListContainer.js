@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
-import { data } from "../utils/products";
+//import { data } from "../utils/products";
 import { useParams } from "react-router-dom";
 
 import firestoreFetch from "../utils/firestoreFetch";
@@ -12,7 +12,7 @@ const ItemsListContainer = (props) => {
   console.log(idCategory);
 
   useEffect(() => {
-    let is_ok = true;
+    //let is_ok = true;
     setIsLoading(true);
 
     let mostrarDatos = (data) => {

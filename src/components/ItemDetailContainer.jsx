@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import ItemDetail from "./ItemDetail";
-import { data } from "../utils/products";
+//import { data } from "../utils/products";
 import { useParams, Navigate } from "react-router-dom";
 
 import firestoreFetch from "../utils/firestoreFetch";
@@ -12,7 +12,7 @@ const ItemDetailContainer = (props) => {
   const urlParams = useParams();
 
   useEffect(() => {
-    let is_ok = true;
+    //let is_ok = true;
     let mostrarItem = (data) => {
       return data.find((i) => i.id === parseInt(urlParams.id));
     };
